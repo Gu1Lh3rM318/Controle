@@ -1,58 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <title>Controle de despesas</title>
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <title>Controle de despesas</title>
+</head>
+
+<body>
+
+  <div class="title">
     <h2>Controle de despesas</h2>
+    <label for="darkNlight" class="label">
+      <input type="checkbox" id="darkNlight">
+      <span class="darkNlight"></span>
+      <span class="material-symbols-outlined">
+        light_mode
+        </span>
+    </label>
+  </div>
 
-    <div class="container">
-      <h4>Saldo atual</h4>
-      
-      <h1 id="balance" class="balance">R$ 0.00</h1>
+  <div class="container">
+    <h4>Saldo atual</h4>
 
-      <div class="inc-exp-container">
-        <div>
-          <h4>Receitas</h4>
-          <p id="money-plus" class="money plus">+ R$0.00</p>
-        </div>
+    <h1 id="balance" class="balance">R$ 0.00</h1>
 
-        <div>
-          <h4>Despesas</h4>
-          <p id="money-minus" class="money minus">- R$0.00</p>
-        </div>
+    <div class="inc-exp-container">
+      <div>
+        <h4>Receitas</h4>
+        <p id="money-plus" class="money plus">+ R$0.00</p>
       </div>
 
-      <h3>Transações</h3>
-      
-      <ul id="transactions" class="transactions">
-        <!-- <li class="minus">
-          Salário <span>-$400</span><button class="delete-btn">x</button>
-        </li> -->
-      </ul>
-
-      <h3>Adicionar transação</h3>
-      
-      <form id="form">
-        <div class="form-control">
-          <label for="text">Nome</label>
-          <input autofocus type="text" id="text" placeholder="Nome da transação" />
-        </div>
-
-        <div class="form-control">
-          <label for="amount">Valor <br />
-            <small>(negativo - despesas, positivo - receitas)</small>
-          </label>
-          <input type="number" id="amount" placeholder="Valor da transação" />
-        </div>
-
-        <button class="btn">Adicionar</button>
-      </form>
+      <div>
+        <h4>Despesas</h4>
+        <p id="money-minus" class="money minus">- R$0.00</p>
+      </div>
     </div>
 
-    <script src="script.js"></script>
-  </body>
+    <h3>Transações</h3>
+
+    <ul id="transactions" class="transactions"></ul>
+
+    <h3>Adicionar transação</h3>
+
+    <form id="form">
+      <div class="form-control">
+        <label for="text">Nome</label>
+        <input autofocus type="text" id="text" placeholder="Nome da transação" autocomplete="off"/>
+      </div>
+
+      <div class="form-control">
+        <label for="amount">Valor <br />
+          <small>(negativo - despesas, positivo - receitas)</small>
+        </label>
+        <input type="number" id="amount" placeholder="Valor da transação" autocomplete="off"/>
+      </div>
+
+      <button class="btn">Adicionar</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    var input = document.querySelector('#darkNlight')
+    $('body').addClass('body-inactive')
+    input.addEventListener('change', function () {
+      if ($('body').hasClass('body-active')) {
+        $('body').removeClass('body-active')
+        $('body').addClass('body-inactive')
+      } else {
+        $('body').removeClass('body-inactive')
+        $('body').addClass('body-active')
+      }
+      
+    })
+
+
+  </script>
+</body>
+
 </html>

@@ -9,7 +9,6 @@
 }
 
 body {
-  background-color: #f7f7f7;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,10 +18,77 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+.body-active {
+  background-color: #343434;
+  color: #ddd;
+  text-shadow: -1px 1px #202020;
+}
+
+.body-active .inc-exp-container {
+  background-color: #313131;
+}
+.body-active .material-symbols-outlined{
+  color: #ddd;
+}
+
+.body-active .transactions li {
+  background-color: #313131;
+  color: #ddd;
+}
+.body-active input[type='text'],
+.body-active  input[type='number']{
+background-color: #252525;
+color: #ddd;
+border: none;
+}
+.body-active .btn{
+  background-color: #314334;
+  color: #ddd;
+}
+
+
+.body-inactive {
+  background-color: #f7f7f7;
+  color: #222;
+}
+
 .container {
   margin: 30px auto;
   width: 350px;
 }
+
+.title {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.material-symbols-outlined{
+  position: absolute;
+  top: 25px;
+  right: -115px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #202020;
+  text-shadow: none;
+}
+
+.label input {
+  position: absolute;
+  display: none;
+}
+
+.darkNlight {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  right: -120px;
+  cursor: pointer;
+}
+
+
+
 
 h1 {
   letter-spacing: 1px;
@@ -86,19 +152,20 @@ input[type='number'] {
   font-size: 16px;
   padding: 10px;
   width: 100%;
+  outline: none;
 }
 
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
+  background-color: #5c9556;
   box-shadow: var(--box-shadow);
-  color: #fff;
   border: 0;
   display: block;
   font-size: 16px;
   margin: 10px 0 30px;
   padding: 10px;
   width: 100%;
+  border: none;
 }
 
 .btn:focus,
