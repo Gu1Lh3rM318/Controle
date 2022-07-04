@@ -5,6 +5,8 @@
 }
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -27,7 +29,8 @@ body {
 .body-active .inc-exp-container {
   background-color: #313131;
 }
-.body-active .material-symbols-outlined{
+
+.body-active .material-symbols-outlined {
   color: #ddd;
 }
 
@@ -35,13 +38,15 @@ body {
   background-color: #313131;
   color: #ddd;
 }
+
 .body-active input[type='text'],
-.body-active  input[type='number']{
-background-color: #252525;
-color: #ddd;
-border: none;
+.body-active input[type='number'] {
+  background-color: #252525;
+  color: #ddd;
+  border: none;
 }
-.body-active .btn{
+
+.body-active .btn {
   background-color: #314334;
   color: #ddd;
 }
@@ -53,17 +58,19 @@ border: none;
 }
 
 .container {
-  margin: 10px auto;
+  margin: 5px auto;
   width: 350px;
 }
 
 .title {
+  margin: 10px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.material-symbols-outlined{
+
+.material-symbols-outlined {
   position: absolute;
   top: 25px;
   right: -115px;
@@ -183,11 +190,28 @@ input[type='number'] {
   background-color: #fff;
   box-shadow: var(--box-shadow);
   color: #333;
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   justify-content: space-between;
   position: relative;
   padding: 10px;
   margin: 10px 0;
+  height: 40px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.transactions li p {
+  padding: 10px 0;
+  grid-column: 1/4;
+  font-size: 0.8em;
+  font-weight: 570;
+  transition: 0.5s 0.2s;
+  filter: opacity(0);
+}
+
+.transactions li span {
+  text-align: end;
 }
 
 .transactions li.plus {
@@ -207,13 +231,22 @@ input[type='number'] {
   line-height: 20px;
   padding: 2px 5px;
   position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translate(-100%, -50%);
-  opacity: 0;
+  top: 5px;
+  left: -20px;
+  display: block;
   transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.transactions li:hover {
+  height: 80px;
+  overflow: visible;
+}
+
+.transactions li:hover p {
+  filter: opacity(1);
 }
 
 .transactions li:hover .delete-btn {
-  opacity: 1;
+  display: block;
 }

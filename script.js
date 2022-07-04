@@ -9,8 +9,14 @@ const inputTransactionAmount = document.querySelector("#amount")
 
 const localStorageTransactions = JSON.parse(localStorage
   .getItem('transactions'))
-let transactions = localStorage
-  .getItem('transactions') !== null ? localStorageTransactions : []
+
+
+
+let transactions = 
+localStorage.getItem('transactions') !== null ? localStorageTransactions : []
+
+
+
 
 const removeTransaction = ID => {
   transactions = transactions.filter(transaction => 
@@ -20,19 +26,26 @@ const removeTransaction = ID => {
   init()
 }
 
-const addTransactionIntoDOM = ({ amount, name, id}) => {
+
+
+const now = new Date()
+const dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado")
+const monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
+
+
+const addTransactionIntoDOM = ({ amount, name, id, Day, Week, Month, Year, Hours}) => {
   const operator = amount < 0 ? "-" : "+"
   const CSSClass = amount < 0 ? "minus" : "plus"
   const amountWithoutOperator = Math.abs(amount)
-  const milhar = amountWithoutOperator.toLocaleString('de-DE', { currency: 'BRL', style: 'currency' })
+  const milhar = amountWithoutOperator.toLocaleString('pt-BR', { currency: 'BRL', style: 'currency' })
   const li = document.createElement("li")
-
   li.classList.add(CSSClass)
-  li.innerHTML = `
-      ${name} 
-      <span>${operator} ${milhar} </span>
-      <button class="delete-btn" onClick="removeTransaction(${id})">x</button> 
-      `
+  li.innerHTML = ` 
+  <button class="delete-btn" onClick="removeTransaction(${id})">x</button> 
+  <h4> ${name} </h4>
+  <span>${operator} ${milhar}</span>
+  <p> Transação feita no dia: ${Day}, ${Week}, do Mes de ${Month}, Ano: ${Year}, as: ${Hours}</p>
+  `
   transactionsUl.append(li)
 
 }
@@ -46,7 +59,7 @@ const getIncome = transactionsAmounts => transactionsAmounts
     .reduce((accumulator, value) => accumulator + value, 0)
 
 const getTotal = transactionsAmounts => transactionsAmounts
-.reduce((accumulator, transaction) => accumulator + transaction, 0)
+    .reduce((accumulator, transaction) => accumulator + transaction, 0)
 
 const updateBalanceValues = () => {
   const transactionsAmounts = transactions.map(({ amount }) => amount)
@@ -63,6 +76,7 @@ const updateBalanceValues = () => {
 const init = () => {
   transactionsUl.innerHTML = ''
   transactions.forEach(addTransactionIntoDOM)
+
   updateBalanceValues()
 }
 
@@ -70,17 +84,24 @@ init()
 
 const updateLocalStorage = () => {
   localStorage.setItem('transactions', JSON.stringify(transactions))
+  
 }
 
 const generateID = () => Math.round(Math.random() * 1000)
 
-const addToTransactionsArray = (transactionName, transactionsAmount) => {
+const addToTransactionsArray = (transactionName, transactionsAmount, day, week, month, year, hours) => {
   transactions.push({ 
     id: generateID(), 
     name: transactionName, 
-    amount: Number(transactionsAmount) 
+    amount: Number(transactionsAmount),
+    Day: day, 
+    Week: week,
+    Month: month,
+    Year: year,
+    Hours: hours
   })
 }
+
 
 const cleanInputs = () => {
   inputTransactionName.value = ''
@@ -95,12 +116,18 @@ const handleFormSubmit = event => {
   const transactionsAmount = inputTransactionAmount.value.trim()
   const isSomeInputEmpty = transactionsAmount === '' || transactionName === ''
 
+  const day = dayName[now.getDay()]
+  const week = now.getDate()
+  const month = monName[now.getMonth()]
+  const year = now.getFullYear()
+  const hours = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds()
+
   if (isSomeInputEmpty){
     alert("Por favor, preencha tanto o nome quanto o valor da transação! ")
     return
   }
-
-  addToTransactionsArray(transactionName, transactionsAmount)
+  
+  addToTransactionsArray(transactionName, transactionsAmount, day, week, month, year, hours)
   init()
   updateLocalStorage()
   cleanInputs()
@@ -108,3 +135,4 @@ const handleFormSubmit = event => {
 }
 
 form.addEventListener("submit", handleFormSubmit)
+
