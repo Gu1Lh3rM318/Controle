@@ -40,10 +40,10 @@ body {
 }
 
 .body-active input[type='text'],
-.body-active input[type='number'] {
-  background-color: #252525;
+.body-active input[type='number'] { 
+  background-color: #343434;
   color: #ddd;
-  border: none;
+
 }
 
 .body-active .btn {
@@ -78,24 +78,8 @@ body {
   font-weight: 700;
   color: #202020;
   text-shadow: none;
+  transition: .5s;
 }
-
-.label input {
-  position: absolute;
-  display: none;
-}
-
-.darkNlight {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 20px;
-  right: -120px;
-  cursor: pointer;
-}
-
-
-
 
 h1 {
   letter-spacing: 1px;
@@ -113,6 +97,8 @@ h4 {
   margin: 0;
   text-transform: uppercase;
 }
+
+h1,h3,h4{user-select: none;}
 
 .inc-exp-container {
   background-color: #fff;
@@ -145,10 +131,26 @@ h4 {
 .money.minus {
   color: #c0392b;
 }
+.relative{
+  position: relative;
+}
 
 label {
+  position: absolute;
   display: inline-block;
-  margin: 10px 0;
+  top: 00px;
+  color: #222a;
+  font-size: 16px;
+  cursor: text;
+  transition: .5s;
+  text-shadow: none;
+}
+small{
+  position: absolute;
+  top: 23px;
+  font-size: 14px;
+  width: max-content;
+  transition: .5s;
 }
 
 input[type='text'],
@@ -162,13 +164,29 @@ input[type='number'] {
   width: 100%;
   outline: none;
   font-weight: 450;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
-::-webkit-input-placeholder{
-  font-weight: 650;
+input:focus ~ label {
   color: #222a;
   font-size: 14px;
+  top: -17px;
+} 
+#form input:valid ~ label{
+  opacity: 0;
+  top: -20px;
+}
+#form input:focus ~ label small{
+  opacity: 0; 
+  top: 50px;
 }
 
+.body-active label,
+.body-active label small, 
+.body-active input:focus ~ label{
+  transition: 0s;
+  color: #aaa;
+}
 .btn {
   cursor: pointer;
   background-color: #5c9556;
@@ -176,7 +194,7 @@ input[type='number'] {
   border: 0;
   display: block;
   font-size: 16px;
-  margin: 10px 0 30px;
+  margin: 25px 0 30px;
   padding: 10px;
   width: 100%;
   border: none;
@@ -255,4 +273,19 @@ input[type='number'] {
 
 .transactions li:hover .delete-btn {
   display: block;
+}
+
+.label input {
+  position: absolute;
+  display: none;
+}
+.label{right: 0;}
+
+.darkNlight {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  right: -120px;
+  cursor: pointer;
 }
