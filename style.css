@@ -80,6 +80,15 @@ body {
   text-shadow: none;
   transition: .5s;
 }
+.eye{
+  position: absolute;
+  top: -2px;
+  left: 10px;
+  width: fit-content;
+}
+#eye{
+  display: none;
+}
 
 h1 {
   letter-spacing: 1px;
@@ -96,6 +105,7 @@ h3 {
 h4 {
   margin: 0;
   text-transform: uppercase;
+  position: relative;
 }
 
 h1,h3,h4{user-select: none;}

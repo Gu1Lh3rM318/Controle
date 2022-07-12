@@ -6,6 +6,8 @@ const form = document.querySelector("#form")
 const inputTransactionName = document.querySelector("#text")
 const inputTransactionAmount = document.querySelector("#amount")
 const h3 = document.querySelector("#moneyTransfers")
+const eye = document.querySelector('.eye')
+const iptEye = document.querySelector('#eye')
 
 
 const localStorageTransactions = JSON.parse(localStorage
@@ -18,6 +20,7 @@ const removeTransaction = ID => {
   transactions = transactions.filter(transaction => 
     transaction.id !== ID)
 
+  changeVisibility  
   updateLocalStorage()
   init()
 }
@@ -61,10 +64,10 @@ const updateBalanceValues = () => {
   const total = Number(getTotal(transactionsAmounts)).toLocaleString('pt-BR', {currency: 'BRL', style: 'currency'})
   const income = Number(getIncome(transactionsAmounts)).toLocaleString('pt-BR', {currency: 'BRL', style: 'currency'})
   const expense = Number(getExpenses(transactionsAmounts)).toLocaleString('pt-BR', {currency: 'BRL', style: 'currency'})
-
+  
   balanceDisplay.textContent = `${total}`  
   incomeDisplay.textContent = `${income}`  
-  expenseDisplay.textContent = `${expense}`  
+  expenseDisplay.textContent = `${expense}`
   }
 
 const init = () => {
@@ -72,7 +75,9 @@ const init = () => {
   transactions.forEach(addTransactionIntoDOM)
   if (transactionsUl.innerHTML === ''){
     h3.innerHTML = ''
+    
   }
+  
   
   updateBalanceValues()
 }
@@ -129,5 +134,21 @@ const handleFormSubmit = event => {
  
 }
 
+const changeVisibility = () => {
+  const transactionsAmounts = transactions.map(({ amount }) => amount)
+    const total = Number(getTotal(transactionsAmounts)).toLocaleString('pt-BR', {currency: 'BRL', style: 'currency'})
+
+
+      if (eye.textContent === 'visibility') {
+        eye.innerHTML = 'visibility_off'
+        balanceDisplay.textContent = 'R$ ----'
+      } else if(eye.innerHTML = 'visibility_off'){
+        balanceDisplay.textContent = `${total}`  
+        eye.innerHTML = 'visibility'
+      }
+}
+
 form.addEventListener("submit", handleFormSubmit)
 
+eye.innerHTML = 'visibility'
+iptEye.addEventListener('change', changeVisibility)
