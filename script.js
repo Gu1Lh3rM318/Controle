@@ -68,6 +68,10 @@ const updateBalanceValues = () => {
   balanceDisplay.textContent = `${total}`  
   incomeDisplay.textContent = `${income}`  
   expenseDisplay.textContent = `${expense}`
+  if(eye.innerHTML = 'visibility_off'){
+    balanceDisplay.textContent = `${total}`  
+    eye.innerHTML = 'visibility'
+  }
   }
 
 const init = () => {
