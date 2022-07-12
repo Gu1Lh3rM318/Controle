@@ -23,8 +23,8 @@ const removeTransaction = ID => {
 }
 
 const now = new Date()
-const dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado")
-const monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
+const dayName = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "sábado")
+const monName = new Array ("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Agosto", "Outubro", "Novembro", "Dezembro")
 
 const addTransactionIntoDOM = ({ amount, name, id, Day, Week, Month, Year, Hours}) => {
   const operator = amount < 0 ? "-" : "+"
@@ -40,7 +40,7 @@ const addTransactionIntoDOM = ({ amount, name, id, Day, Week, Month, Year, Hours
   <button class="delete-btn" onClick="removeTransaction(${id})">x</button> 
   <h4> ${name} </h4>
   <span>${operator} ${milhar}</span>
-  <p> Transação feita no dia: ${Day}, ${Week}, do Mes de ${Month}, Ano: ${Year}, as: ${Hours}</p>
+  <p> Transação feita no dia: ${Day}, ${Week}, do Mes de ${Month}.<br> Ano: ${Year}.<br> As: ${Hours}</p>
   `
   transactionsUl.append(li)
 }
@@ -111,8 +111,8 @@ const handleFormSubmit = event => {
   const transactionsAmount = inputTransactionAmount.value.trim()
   const isSomeInputEmpty = transactionsAmount === '' || transactionName === ''
 
-  const day = dayName[now.getDay()]
-  const week = now.getDate()
+  const day = now.getDate()
+  const week = dayName[now.getDay()]
   const month = monName[now.getMonth()]
   const year = now.getFullYear()
   const hours = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds()
