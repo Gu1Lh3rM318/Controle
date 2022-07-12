@@ -166,6 +166,7 @@ input[type='number'] {
   font-weight: 450;
   margin-bottom: 20px;
   margin-top: 20px;
+  background-color: transparent;
 }
 input:focus ~ label {
   color: #222a;
