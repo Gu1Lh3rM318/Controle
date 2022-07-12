@@ -5,18 +5,14 @@ const balanceDisplay = document.querySelector("#balance")
 const form = document.querySelector("#form")
 const inputTransactionName = document.querySelector("#text")
 const inputTransactionAmount = document.querySelector("#amount")
+const h3 = document.querySelector("#moneyTransfers")
 
 
 const localStorageTransactions = JSON.parse(localStorage
   .getItem('transactions'))
 
-
-
 let transactions = 
 localStorage.getItem('transactions') !== null ? localStorageTransactions : []
-
-
-
 
 const removeTransaction = ID => {
   transactions = transactions.filter(transaction => 
@@ -26,12 +22,9 @@ const removeTransaction = ID => {
   init()
 }
 
-
-
 const now = new Date()
 const dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado")
 const monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
-
 
 const addTransactionIntoDOM = ({ amount, name, id, Day, Week, Month, Year, Hours}) => {
   const operator = amount < 0 ? "-" : "+"
@@ -40,6 +33,9 @@ const addTransactionIntoDOM = ({ amount, name, id, Day, Week, Month, Year, Hours
   const milhar = amountWithoutOperator.toLocaleString('pt-BR', { currency: 'BRL', style: 'currency' })
   const li = document.createElement("li")
   li.classList.add(CSSClass)
+  h3.innerHTML = `
+  <h3>Transações</h3>
+  `
   li.innerHTML = ` 
   <button class="delete-btn" onClick="removeTransaction(${id})">x</button> 
   <h4> ${name} </h4>
@@ -47,7 +43,6 @@ const addTransactionIntoDOM = ({ amount, name, id, Day, Week, Month, Year, Hours
   <p> Transação feita no dia: ${Day}, ${Week}, do Mes de ${Month}, Ano: ${Year}, as: ${Hours}</p>
   `
   transactionsUl.append(li)
-
 }
 
 const getExpenses = transactionsAmounts => Math.abs(transactionsAmounts
@@ -70,13 +65,15 @@ const updateBalanceValues = () => {
   balanceDisplay.textContent = `${total}`  
   incomeDisplay.textContent = `${income}`  
   expenseDisplay.textContent = `${expense}`  
-
   }
 
 const init = () => {
   transactionsUl.innerHTML = ''
   transactions.forEach(addTransactionIntoDOM)
-
+  if (transactionsUl.innerHTML === ''){
+    h3.innerHTML = ''
+  }
+  
   updateBalanceValues()
 }
 
@@ -102,7 +99,6 @@ const addToTransactionsArray = (transactionName, transactionsAmount, day, week, 
   })
 }
 
-
 const cleanInputs = () => {
   inputTransactionName.value = ''
   inputTransactionAmount.value = ''
@@ -110,7 +106,6 @@ const cleanInputs = () => {
 
 const handleFormSubmit = event => {
   event.preventDefault() 
-
 
   const transactionName = inputTransactionName.value.trim()
   const transactionsAmount = inputTransactionAmount.value.trim()

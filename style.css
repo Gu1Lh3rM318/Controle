@@ -153,13 +153,20 @@ label {
 
 input[type='text'],
 input[type='number'] {
-  border: 1px solid #dedede;
+  border: none;
+  border-bottom: 1px solid #bbb;
   border-radius: 2px;
   display: block;
   font-size: 16px;
-  padding: 10px;
+  padding: 0 0 5px;
   width: 100%;
   outline: none;
+  font-weight: 450;
+}
+::-webkit-input-placeholder{
+  font-weight: 650;
+  color: #222a;
+  font-size: 14px;
 }
 
 .btn {
