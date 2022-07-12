@@ -23,8 +23,8 @@ const removeTransaction = ID => {
 }
 
 const now = new Date()
-const dayName = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "sábado")
-const monName = new Array ("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Agosto", "Outubro", "Novembro", "Dezembro")
+const dayName = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado")
+const monName = new Array ("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 'Julho', "Agosto",'Setembro', "Outubro", "Novembro", "Dezembro")
 
 const addTransactionIntoDOM = ({ amount, name, id, Day, Week, Month, Year, Hours}) => {
   const operator = amount < 0 ? "-" : "+"
